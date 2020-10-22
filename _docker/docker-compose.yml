@@ -4,7 +4,7 @@ services:
   excel_postgres:
     container_name: "excel_postgres"
     build: ./conf/postgres
-    restart: always
+    restart: "no"
     volumes:
       - ./data/postgres:/var/lib/postgresql/data/
     environment:
@@ -21,7 +21,7 @@ services:
   excel_phpfpm:
     container_name: "excel_phpfpm"
     build: ./conf/php
-    restart: always
+    restart: "no"
     depends_on:
       - excel_postgres
       - excel_redis
@@ -38,7 +38,7 @@ services:
   excel_nginx:
     container_name: "excel_nginx"
     image: nginx:mainline
-    restart: always
+    restart: "no"
     ports:
       - "8081:80"
     depends_on:
@@ -55,7 +55,7 @@ services:
   excel_redis:
     container_name: "excel_redis"
     build: ./conf/redis
-    restart: always
+    restart: "no"
     ports:
       - "6379:6379"
     volumes:
