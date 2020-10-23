@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('/table/{id}/editor/get', 'Excel\ApiController@get')
+    ->name('excel.editor.get')
+    ->where('id', '[0-9]+');
+
+Route::post('/table/{id}/editor/set', 'Excel\ApiController@store')
+    ->name('excel.editor.set')
+    ->where('id', '[0-9]+');

@@ -1,5 +1,5 @@
 <?php
-namespace App\Service\Table;
+namespace App\Service\Excel;
 
 
 class CellCoordinateDefinition

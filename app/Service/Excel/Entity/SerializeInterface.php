@@ -1,9 +1,9 @@
 <?php
-namespace App\Service\Table\Entity;
+namespace App\Service\Excel\Entity;
 
 /**
  * Interface SerializeInterface
- * @package App\Service\Table\Entity
+ * @package App\Service\Excel\Entity
  */
 interface SerializeInterface extends \JsonSerializable
 {

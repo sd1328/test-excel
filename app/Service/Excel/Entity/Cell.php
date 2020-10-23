@@ -1,5 +1,5 @@
 <?php
-namespace App\Service\Table\Entity;
+namespace App\Service\Excel\Entity;
 
 /**
  * Class Cell
@@ -10,8 +10,16 @@ namespace App\Service\Table\Entity;
  * @property-read int $col
  * @property-read string|float $val
  *
+ * @OA\Schema(
+ *     schema="CellEntity",
+ *     title="Ячейка таблицы",
+ *     @OA\Property(property="r", type="integer", description="Номер строки", example="1"),
+ *     @OA\Property(property="c", type="integer", description="Номер колонки", example="1"),
+ *     @OA\Property(property="t", type="string", description="Тип значения ячейки: n - число, c - строка", example="c"),
+ *     @OA\Property(property="val", type="string", description="Значение конечной ячейки", example="Василий Пупкин"),
+ * )
  *
- * @package App\Service\Table\Entity
+ * @package App\Service\Excel\Entity
  */
 class Cell implements SerializeInterface
 {
@@ -32,7 +40,7 @@ class Cell implements SerializeInterface
         't' => 'type',
         'r' => 'row',
         'c' => 'col',
-        'val' => 'val',
+        'v' => 'val',
     ];
 
     /**
@@ -86,8 +94,9 @@ class Cell implements SerializeInterface
 
     /**
      * @param $value
+     * @return Cell
      */
-    public function setVal($value): void
+    public function setVal($value): self
     {
         if (is_numeric($value)) {
             $this->val = (float)$value;
@@ -96,19 +105,47 @@ class Cell implements SerializeInterface
             $this->val = mb_substr($value, 0, 255, 'UTF-8');
             $this->type = self::TYPE_STRING;
         }
+        return $this;
+    }
+
+    /**
+     * @param $value
+     * @param string $type
+     * @return Cell
+     */
+    public function setTypedVal($value, string $type): self
+    {
+        switch ($type) {
+            case self::TYPE_NUMBER:
+                $this->val = (float) $value;
+                $this->type = $type;
+                break;
+            case self::TYPE_STRING:
+                $this->val = (string) $value;
+                $this->type = $type;
+                break;
+            default:
+                throw new \InvalidArgumentException("Неизвестный тип ячейки [$type]");
+                break;
+        }
+        return $this;
     }
 
     /**
      * @param int $column
      * @param int $row
+     * @return Cell
      */
-    public function setCoordinate(int $column, int $row): void
+    public function setCoordinate(int $column, int $row): self
     {
         if ($column < 1 || $row < 1) {
-            throw new \InvalidArgumentException("Номера строк и колонок могут быть только положительный числа больше нуля");
+            throw new \InvalidArgumentException(
+                "Номера строк и колонок могут быть только положительный числа больше нуля"
+            );
         }
         $this->col = $column;
         $this->row = $row;
+        return $this;
     }
 
     /**

@@ -1,5 +1,5 @@
 <?php
-namespace App\Service\Table;
+namespace App\Service\Excel;
 
 /**
  * Class AlphaNumberSystemDefinition
@@ -8,7 +8,7 @@ namespace App\Service\Table;
  * - для Excel подобной системы идентификации колонок:  A - 1, B - 2, AA - 27
  * - счет начиная с 1
  *
- * @package App\Service\Table
+ * @package App\Service\Excel
  */
 class AlphaNumberSystemDefinition
 {

@@ -1,0 +1,210 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Тест - Web Excel API",
+        "description": "Тестовое задание - редактор таблиц онлайн",
+        "version": "1.0"
+    },
+    "paths": {
+        "/table/{tableId}/editor/get": {
+            "post": {
+                "tags": [
+                    "Получить ячейки таблицы согласно заданых координат"
+                ],
+                "operationId": "App\\Http\\Controllers\\Excel\\ApiController::get",
+                "parameters": [
+                    {
+                        "name": "tableId",
+                        "in": "path",
+                        "description": "Идентификатор таблицы",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ApiRequestsCellSearch"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/table/{tableId}/editor/set": {
+            "post": {
+                "tags": [
+                    "Изменить значение указанной ячейки"
+                ],
+                "operationId": "App\\Http\\Controllers\\Excel\\ApiController::store",
+                "parameters": [
+                    {
+                        "name": "tableId",
+                        "in": "path",
+                        "description": "Идентификатор таблицы",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ApiRequestsCell"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ValidationError": {
+                "properties": {
+                    "field": {
+                        "description": "error",
+                        "type": "array",
+                        "items": {},
+                        "example": [
+                            "You have some error by field"
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "ApiRequestsCell": {
+                "title": "Значение ячейки таблицы",
+                "required": [
+                    "col",
+                    "row"
+                ],
+                "properties": {
+                    "col": {
+                        "description": "Номер колонки",
+                        "type": "integer",
+                        "example": "2"
+                    },
+                    "row": {
+                        "description": "Номер строки",
+                        "type": "integer",
+                        "example": "4"
+                    },
+                    "value": {
+                        "description": "Значение ячейки",
+                        "type": "integer",
+                        "example": "Номер"
+                    }
+                },
+                "type": "object"
+            },
+            "ApiRequestsCellSearch": {
+                "title": "Координаты прямоугольника для получения ячеек",
+                "required": [
+                    "col",
+                    "row"
+                ],
+                "properties": {
+                    "start_col": {
+                        "description": "Номер начальной колонки",
+                        "type": "integer",
+                        "example": "2"
+                    },
+                    "start_row": {
+                        "description": "Номер начальной строки",
+                        "type": "integer",
+                        "example": "4"
+                    },
+                    "end_col": {
+                        "description": "Значение конечной ячейки",
+                        "type": "integer",
+                        "example": "30"
+                    },
+                    "end_row": {
+                        "description": "Значение конечной ячейки",
+                        "type": "integer",
+                        "example": "10"
+                    }
+                },
+                "type": "object"
+            },
+            "CellEntity": {
+                "title": "Ячейка таблицы",
+                "properties": {
+                    "r": {
+                        "description": "Номер строки",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "c": {
+                        "description": "Номер колонки",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "t": {
+                        "description": "Тип значения ячейки: n - число, c - строка",
+                        "type": "string",
+                        "example": "c"
+                    },
+                    "val": {
+                        "description": "Значение конечной ячейки",
+                        "type": "string",
+                        "example": "Василий Пупкин"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}

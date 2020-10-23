@@ -1,13 +1,13 @@
 <?php
-namespace App\Service\Table\Entity;
-use App\Service\Table\CellCoordinateDefinition;
+namespace App\Service\Excel\Entity;
+use App\Service\Excel\CellCoordinateDefinition;
 
 /**
  * Class Table
  *
  * Класс таблицы
  *
- * @package App\Service\Table\Entity
+ * @package App\Service\Excel\Entity
  */
 class Table implements SerializeInterface
 {
@@ -61,34 +61,56 @@ class Table implements SerializeInterface
 
     /**
      * @param int $id
+     * @return Table
      */
-    public function setId(int $id): void
+    public function setId(int $id): self
     {
         $this->id = $id;
+        return $this;
     }
 
     /**
      * @param string $name
+     * @return Table
      */
-    public function setName(string $name): void
+    public function setName(string $name): self
     {
         $this->name = $name;
+        return $this;
     }
 
     /**
      * @param string $description
+     * @return Table
      */
-    public function setDescription(string $description): void
+    public function setDescription(string $description): self
     {
         $this->description = $description;
+        return $this;
     }
 
     /**
      * @param Cell $cell
+     * @return Table
      */
-    public function setCell(Cell $cell): void
+    public function setCell(Cell $cell): self
     {
         $this->cells[CellCoordinateDefinition::cellIdFromCoordinate($cell->col, $cell->row)] = $cell;
+        return $this;
+    }
+
+    /**
+     * @param int $column
+     * @param int $row
+     * @return Table
+     */
+    public function removeCell(int $column, int $row): self
+    {
+        $id = CellCoordinateDefinition::cellIdFromCoordinate($column, $row);
+        if (isset($this->cells[$id])) {
+            unset($this->cells[$id]);
+        }
+        return $this;
     }
 
     /**
