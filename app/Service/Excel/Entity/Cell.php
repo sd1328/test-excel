@@ -16,7 +16,7 @@ namespace App\Service\Excel\Entity;
  *     @OA\Property(property="r", type="integer", description="Номер строки", example="1"),
  *     @OA\Property(property="c", type="integer", description="Номер колонки", example="1"),
  *     @OA\Property(property="t", type="string", description="Тип значения ячейки: n - число, c - строка", example="c"),
- *     @OA\Property(property="val", type="string", description="Значение конечной ячейки", example="Василий Пупкин"),
+ *     @OA\Property(property="v", type="string", description="Значение конечной ячейки", example="Василий Пупкин"),
  * )
  *
  * @package App\Service\Excel\Entity

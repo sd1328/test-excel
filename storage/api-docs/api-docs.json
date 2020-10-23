@@ -194,7 +194,7 @@
                         "type": "string",
                         "example": "c"
                     },
-                    "val": {
+                    "v": {
                         "description": "Значение конечной ячейки",
                         "type": "string",
                         "example": "Василий Пупкин"

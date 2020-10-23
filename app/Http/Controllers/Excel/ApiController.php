@@ -75,7 +75,7 @@ class ApiController extends Controller
      *      @OA\JsonContent(
      *          @OA\Schema(
      *              type="array",
-     *              @OA\Property(property="data", type="array", @OA\Items(ref="#/components/schemas/CellEntity"))
+     *              @OA\Items(ref="#/components/schemas/CellEntity")
      *          )
      *      ),
      *     ),
