@@ -134,9 +134,9 @@
                 ],
                 "properties": {
                     "col": {
-                        "description": "Номер колонки",
-                        "type": "integer",
-                        "example": "2"
+                        "description": "Номер начальной колонки (символьный Excel подобный)",
+                        "type": "string",
+                        "example": "A"
                     },
                     "row": {
                         "description": "Номер строки",
@@ -159,9 +159,9 @@
                 ],
                 "properties": {
                     "start_col": {
-                        "description": "Номер начальной колонки",
-                        "type": "integer",
-                        "example": "2"
+                        "description": "Номер начальной колонки (символьный Excel подобный)",
+                        "type": "string",
+                        "example": "A"
                     },
                     "start_row": {
                         "description": "Номер начальной строки",
@@ -169,9 +169,9 @@
                         "example": "4"
                     },
                     "end_col": {
-                        "description": "Значение конечной ячейки",
-                        "type": "integer",
-                        "example": "30"
+                        "description": "Значение конечной ячейки (символьный Excel подобный)",
+                        "type": "string",
+                        "example": "AC"
                     },
                     "end_row": {
                         "description": "Значение конечной ячейки",
@@ -190,9 +190,9 @@
                         "example": "1"
                     },
                     "c": {
-                        "description": "Номер колонки",
+                        "description": "Номер колонки (символьный Excel подобный)",
                         "type": "integer",
-                        "example": "1"
+                        "example": "AD"
                     },
                     "t": {
                         "description": "Тип значения ячейки: n - число, c - строка",

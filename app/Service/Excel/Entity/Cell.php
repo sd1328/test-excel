@@ -1,5 +1,6 @@
 <?php
 namespace App\Service\Excel\Entity;
+use App\Service\Excel\AlphaNumberSystemDefinition;
 
 /**
  * Class Cell
@@ -14,7 +15,7 @@ namespace App\Service\Excel\Entity;
  *     schema="CellEntity",
  *     title="Ячейка таблицы",
  *     @OA\Property(property="r", type="integer", description="Номер строки", example="1"),
- *     @OA\Property(property="c", type="integer", description="Номер колонки", example="1"),
+ *     @OA\Property(property="c", type="integer", description="Номер колонки (символьный Excel подобный)", example="AD"),
  *     @OA\Property(property="t", type="string", description="Тип значения ячейки: n - число, c - строка", example="c"),
  *     @OA\Property(property="v", type="string", description="Значение конечной ячейки", example="Василий Пупкин"),
  * )
@@ -157,6 +158,21 @@ class Cell implements SerializeInterface
             't' => $this->type,
             'r' => $this->row,
             'c' => $this->col,
+            'v' => $this->val,
+        ];
+    }
+
+    /**
+     * Данный для json - отдача фронту
+     * - отличие от jsonSerialize, символьные координаты колонки
+     * @return array
+     */
+    public function jsonResource()
+    {
+        return [
+            't' => $this->type,
+            'r' => $this->row,
+            'c' => strtoupper(AlphaNumberSystemDefinition::getAlphaByNumber($this->col)),
             'v' => $this->val,
         ];
     }

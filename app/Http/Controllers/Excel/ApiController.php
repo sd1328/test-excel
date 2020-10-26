@@ -99,7 +99,7 @@ class ApiController extends Controller
         $data = [];
         /* @var Cell $cell */
         foreach ($this->excelService->getCells($tableModel, $cellsSearchRequest) as $cell) {
-            $data[] = $cell->jsonSerialize();
+            $data[] = $cell->jsonResource();
         }
         return new JsonResponse($data);
     }

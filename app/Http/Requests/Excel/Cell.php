@@ -2,6 +2,7 @@
 namespace App\Http\Requests\Excel;
 
 use App\Http\Requests\ApiRequests;
+use App\Service\Excel\AlphaNumberSystemDefinition;
 
 /**
  * Class Cell
@@ -11,7 +12,7 @@ use App\Http\Requests\ApiRequests;
  *     schema="ApiRequestsCell",
  *     title="Значение ячейки таблицы",
  *     required={"col", "row"},
- *     @OA\Property(property="col", type="integer", description="Номер колонки", example="2"),
+ *     @OA\Property(property="col", type="string", description="Номер начальной колонки (символьный Excel подобный)", example="A"),
  *     @OA\Property(property="row", type="integer", description="Номер строки", example="4"),
  *     @OA\Property(property="value", type="integer", description="Значение ячейки", example="Номер"),
  * )
@@ -26,7 +27,7 @@ class Cell extends ApiRequests
     public function rules(): array
     {
         return [
-            'col' => 'required|integer|min:1',
+            'col' => 'required|regex:/^[a-z]+$/i|min:1',
             'row' => 'required|integer|min:1',
             'value' => 'required|string|max:255',
         ];
@@ -37,7 +38,9 @@ class Cell extends ApiRequests
      */
     public function getCol(): int
     {
-        return (int) $this->input('col');
+        return AlphaNumberSystemDefinition::getNumberByAlpha(
+            $this->input('col', 'a')
+        );
     }
 
     /**
