@@ -38,7 +38,12 @@
                         "description": "successful operation",
                         "content": {
                             "application/json": {
-                                "schema": {}
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CellEntity"
+                                    }
+                                }
                             }
                         }
                     },

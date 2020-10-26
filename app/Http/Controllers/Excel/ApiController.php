@@ -73,10 +73,8 @@ class ApiController extends Controller
      *      response="200",
      *      description="successful operation",
      *      @OA\JsonContent(
-     *          @OA\Schema(
-     *              type="array",
-     *              @OA\Items(ref="#/components/schemas/CellEntity")
-     *          )
+     *          type="array",
+     *          @OA\Items(ref="#/components/schemas/CellEntity")
      *      ),
      *     ),
      *     @OA\Response(
