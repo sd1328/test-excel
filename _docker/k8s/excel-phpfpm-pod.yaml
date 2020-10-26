@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: excel-phpfpm
+  name: excel-phpfpm
+spec:
+  containers:
+  - image: excel-phpfpm
+    name: excel-phpfpm
+    ports:
+    - containerPort: 9000
+    resources: {}
+    volumeMounts:
+    - mountPath: /code
+      name: excel-phpfpm-claim0
+    - mountPath: /usr/local/etc/php/conf.d/custom.ini
+      name: excel-phpfpm-claim1
+  hostname: excel_phpfpm
+  restartPolicy: Never
+  volumes:
+  - name: excel-phpfpm-claim0
+    persistentVolumeClaim:
+      claimName: excel-phpfpm-claim0
+  - name: excel-phpfpm-claim1
+    persistentVolumeClaim:
+      claimName: excel-phpfpm-claim1
+status: {}
