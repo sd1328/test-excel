@@ -25,7 +25,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="description" class="col-md-4 col-form-label text-md-right">Название</label>
+                                <label for="description" class="col-md-4 col-form-label text-md-right">Описание</label>
 
                                 <div class="col-md-8">
                                     <input id="description" type="description" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ $table->description }}" required autocomplete="description" autofocus>

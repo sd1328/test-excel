@@ -29,7 +29,7 @@ class Cell extends ApiRequests
         return [
             'col' => 'required|regex:/^[a-z]+$/i|min:1',
             'row' => 'required|integer|min:1',
-            'value' => 'required|string|max:255',
+            'value' => 'nullable|string|max:255',
         ];
     }
 

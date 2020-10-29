@@ -83,13 +83,14 @@ class Service
      * @param TableModel $tableModel
      * @param Table $table
      * @param Cell $cell
+     * @return void
      * @throws \Exception
      */
     public function cellRemove(TableModel $tableModel, Table $table, Cell $cell): void
     {
         $table->removeCell($cell->col, $cell->row);
-        $table->setCell($cell);
         $tableModel->getCell($cell)->delete();
+        $this->setToRedis($tableModel, $table);
     }
 
     /**
