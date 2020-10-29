@@ -29,7 +29,7 @@ class Cell extends ApiRequests
         return [
             'col' => 'required|regex:/^[a-z]+$/i|min:1',
             'row' => 'required|integer|min:1',
-            'value' => 'nullable|string|max:255',
+            'value' => 'nullable|max:255',
         ];
     }
 
@@ -52,10 +52,10 @@ class Cell extends ApiRequests
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getValue()
+    public function getValue(): string
     {
-        return $this->input('value');
+        return trim((string) $this->input('value'));
     }
 }

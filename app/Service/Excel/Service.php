@@ -57,7 +57,7 @@ class Service
         $cell = (new Cell())
             ->setCoordinate($cellRequest->getCol(), $cellRequest->getRow())
             ->setVal($cellRequest->getValue());
-        if ($cellRequest->getValue()) {
+        if ($cellRequest->getValue() !== '') {
             $this->cellStore($tableModel, $table, $cell);
         } else {
             $this->cellRemove($tableModel, $table, $cell);
