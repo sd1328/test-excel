@@ -75,7 +75,7 @@ class AlphaNumberSystemDefinition
     {
         $alpha = [];
         while ($number > 26) {
-            $modulo = $number % 26;
+            $modulo = $number % 26 ?: 26;
             $alpha[] = self::getAlphabet($modulo);
             $number = ($number - $modulo) / 26;
         }
