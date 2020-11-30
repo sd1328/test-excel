@@ -5,12 +5,12 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 /**
- * Class Excel
+ * Class ExcelFix
  *
  * Исправление определения внешнего ключа, добавляем каскадное удаление
  *
  */
-class Excel extends Migration
+class ExcelFix extends Migration
 {
     /**
      * Run the migrations.
