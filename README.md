@@ -40,7 +40,12 @@ cd /code
 # установка зависимостей
 composer update
 # миграции
-php artisan migrate
+
+php artisan migrate --path=/database/migrations/2014_10_12_000000_create_users_table.php
+php artisan migrate --path=/database/migrations/2014_10_12_100000_create_password_resets_table.php
+php artisan migrate --path=/database/migrations/2019_08_19_000000_create_failed_jobs_table.php 
+php artisan migrate --path=/database/migrations/2020_10_23_000000_excel.php
+php artisan migrate --path=/database/migrations/2020_10_29_000000_excel.php
 ```
 
 ### API
